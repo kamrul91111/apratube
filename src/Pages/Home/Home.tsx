@@ -88,7 +88,7 @@ const Home = () => {
     <div className="home-container">
       {/* while loading, show lottie, else render table */}
       {loading === true ? (
-        <div>
+        <div className="lottie-container">
           <Lottie
             loop
             animationData={loader}
@@ -99,9 +99,14 @@ const Home = () => {
       ) : (
         <div className="data-container">
           {/*searchbar  */}
-          <TextField id="search" label="Search" variant="outlined" fullWidth />
           {/* render table for data */}
           <TableContainer component={Paper}>
+            <TextField
+              id="search"
+              label="Search"
+              variant="outlined"
+              fullWidth
+            />
             <Table sx={{minWidth: 650}} aria-label="simple table">
               <TableHead>
                 <TableRow>

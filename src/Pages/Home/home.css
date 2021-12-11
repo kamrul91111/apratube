@@ -1,9 +1,5 @@
 .home-container {
   padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .buttons-container {
@@ -13,7 +9,13 @@
 }
 
 .display-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

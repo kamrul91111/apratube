@@ -23,7 +23,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Typography from "@mui/material/Typography";
 
 // icons
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -37,8 +36,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
   p: 4,
 };
 
@@ -48,9 +45,6 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(true); //for loading indicator
   const [open, setOpen] = useState<boolean>(false);
   const [displayUrl, setDisplayUrl] = useState<string>(""); //the url to be displayed on modal
-
-  // toggle modal
-  const toggleModal = () => setOpen(!open);
 
   // data type for api data
   interface photoData {
@@ -176,8 +170,8 @@ const Home = () => {
             }}
           >
             <Fade in={open}>
-              <Box sx={style}>
-                <div className='display-container'>
+              <Box sx={style} style={{borderRadius: 15}}>
+                <div className="display-container">
                   <img src={displayUrl} />
                 </div>
               </Box>

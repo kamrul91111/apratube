@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import './home.css'
+import "./home.css";
 import axios from "axios";
 import Lottie from "react-lottie-player";
 
@@ -8,6 +8,16 @@ import loader from "../../assets/lottie/loader.json";
 
 // api url
 import {jsonApiUrl} from "../../api/baseUrl";
+
+// mui
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 const Home = () => {
   const [data, setData] = useState<photoData[]>([]); //grab json api data
@@ -36,6 +46,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      {/* while loading, show lottie, else render table */}
       {loading === true ? (
         <div>
           <Lottie
@@ -46,8 +57,38 @@ const Home = () => {
           />
         </div>
       ) : (
-        <div>
-          <span>henlo world</span>
+        <div className="data-container">
+          {/* render table for data */}
+          <TableContainer component={Paper}>
+            <Table sx={{minWidth: 650}} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell align="right">Title</TableCell>
+                  <TableCell align="right">Thumbnail</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {/* map through data and render cells */}
+                {data.map((item: photoData) => (
+                  <TableRow
+                    key={item.id}
+                    sx={{"&:last-child td, &:last-child th": {border: 0}}}
+                  >
+                    <TableCell component="th" scope="row">
+                      {item.id}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {item.title}
+                    </TableCell>
+                    <TableCell align="right">
+                      <img src={item.thumbnailUrl} alt={item.title} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       )}
     </div>

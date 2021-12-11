@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./home.css";
 import axios from "axios";
 import Lottie from "react-lottie-player";
+import TextField from "@mui/material/TextField";
 
 // lottie animation
 import loader from "../../assets/lottie/loader.json";
@@ -74,6 +75,13 @@ const Home = () => {
         </div>
       ) : (
         <div className="data-container">
+          {/*searchbar  */}
+          <TextField
+            id="search"
+            label="Search"
+            variant="outlined"
+            fullWidth
+          />
           {/* render table for data */}
           <TableContainer component={Paper}>
             <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -109,23 +117,25 @@ const Home = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          {/* button */}
-          <IconButton
-            color="primary"
-            aria-label="load previous data"
-            component="span"
-            onClick={goBack}
-          >
-            <NavigateBeforeIcon />
-          </IconButton>
-          <IconButton
-            color="primary"
-            aria-label="load more"
-            component="span"
-            onClick={getMore}
-          >
-            <NavigateNextIcon />
-          </IconButton>
+          {/* buttons */}
+          <div className="buttons-container">
+            <IconButton
+              color="primary"
+              aria-label="load previous data"
+              component="span"
+              onClick={goBack}
+            >
+              <NavigateBeforeIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              aria-label="load more"
+              component="span"
+              onClick={getMore}
+            >
+              <NavigateNextIcon />
+            </IconButton>
+          </div>
         </div>
       )}
     </div>

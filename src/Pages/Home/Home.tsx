@@ -17,7 +17,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
+// icons
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const Home = () => {
   const [data, setData] = useState<photoData[]>([]); //grab json api data
@@ -43,6 +47,18 @@ const Home = () => {
       })
       .catch(() => alert("Something went wrong. Please try again!"));
   }, [pageNumber]); // when page number changes, make the network request again with callback function
+
+  //   load previous page
+  const goBack = () => {
+    if (pageNumber > 0) {
+      setPageNumber(pageNumber - 1);
+    } else return null;
+  };
+
+  //   load next page
+  const getMore = () => {
+    setPageNumber(pageNumber + 1);
+  };
 
   return (
     <div className="home-container">
@@ -70,8 +86,12 @@ const Home = () => {
               </TableHead>
               <TableBody>
                 {/* map through data and render cells */}
-                {data.map((item: photoData) => (
+                {data.map((item: photoData, index: number) => (
                   <TableRow
+                    //   alternate tablecell colors using index
+                    style={{
+                      backgroundColor: index % 2 === 0 ? "#e8fbe8" : "white",
+                    }}
                     key={item.id}
                     sx={{"&:last-child td, &:last-child th": {border: 0}}}
                   >
@@ -89,6 +109,23 @@ const Home = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          {/* button */}
+          <IconButton
+            color="primary"
+            aria-label="load previous data"
+            component="span"
+            onClick={goBack}
+          >
+            <NavigateBeforeIcon />
+          </IconButton>
+          <IconButton
+            color="primary"
+            aria-label="load more"
+            component="span"
+            onClick={getMore}
+          >
+            <NavigateNextIcon />
+          </IconButton>
         </div>
       )}
     </div>

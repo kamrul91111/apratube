@@ -63,7 +63,7 @@ const Home = () => {
         setData(res.data); //grab data from api
         setLoading(false); //stop loading indicator
       })
-      .catch(() => alert("Something went wrong. Please try again!"));
+      .catch(err => console.log(err));
   }, [pageNumber]); // when page number changes, make the network request again with callback function
 
   //   load previous page

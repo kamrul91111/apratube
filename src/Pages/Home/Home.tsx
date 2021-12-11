@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from "react";
+import './home.css'
 import axios from "axios";
+import Lottie from "react-lottie-player";
+
+// lottie animation
+import loader from "../../assets/lottie/loader.json";
 
 // api url
 import {jsonApiUrl} from "../../api/baseUrl";
@@ -31,7 +36,20 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <span>henlo world</span>
+      {loading === true ? (
+        <div>
+          <Lottie
+            loop
+            animationData={loader}
+            play
+            style={{width: 550, height: 550}}
+          />
+        </div>
+      ) : (
+        <div>
+          <span>henlo world</span>
+        </div>
+      )}
     </div>
   );
 };
